@@ -59,6 +59,7 @@ $("#Donphan").html("<img class='imgselect' src='" + donphan.imgf + "'>");
 $("#Exploud").html("<img class='imgselect' src='" + exploud.imgf + "'>");
 $("#Zangoose").html("<img class='imgselect' src='" + zangoose.imgf + "'>");
 $("#Tauros").html("<img class='imgselect' src='" + tauros.imgf + "'>");
+$("#fight").css("display", "none");
 
 $(".choice").on("click", function(){
 
