@@ -1,0 +1,58 @@
+.header {
+    margin-left: 10%;
+    width: 800px;
+    text-align: center;
+}
+.imgselect, .imgbattle {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    margin: 5px;
+}
+.imgselect {
+    border-width: 4px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+
+}
+.imgselect:hover, .imgselect:focus {
+    border-color: crimson;
+}
+#einfo, #pinfo {
+    width: 300px;
+    height: 16px;
+    position: relative;
+    top: 6px;
+    right: 2px;
+    background-color: springgreen;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+#fight {
+    position: relative;
+    left: 600px;
+    bottom: 70px;
+}
+#battlebox {
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+}
+body {
+    background-image: url(../images/allbg.jpg);
+}
+.battlespacer {
+    height: 56px;
+}
+.ptext {
+    color: black;
+    font-weight: bold;
+}
+.etext {
+    color: white;
+    font-weight: bold;
+}
+.namespacer {
+    height: 56px;
+}
