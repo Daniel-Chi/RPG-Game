@@ -1,8 +1,10 @@
+$(document).ready(function(){
 var tauros = {
-    "name": "tauros",
+    "name": "Tauros",
     "hp": 210,
+    "hpcurr": 210,
     "atk1": "Rage",
-    "bp1": 2,
+    "bp1": 7,
     "atk2": "Horn Attack",
     "bp2": 20,
     "spd": 110,
@@ -10,21 +12,23 @@ var tauros = {
     "imgb": "assets/images/taurosb.png",
 };
 var donphan = {
-    "name": "donphan",
+    "name": "Donphan",
     "hp": 270,
+    "hpcurr": 270,
     "atk1": "Rollout",
-    "bp1": 3,
+    "bp1": 20,
     "atk2": "Rapid Spin",
-    "bp2": 5,
+    "bp2": 8,
     "spd": 50,
     "imgf": "assets/images/donphan.png",
     "imgb": "assets/images/donphanb.png",
 };
 var exploud = {
-    "name": "exploud",
+    "name": "Exploud",
     "hp": 170,
+    "hpcurr": 170,
     "atk1": "Echoed Voice",
-    "bp1": 4,
+    "bp1": 10,
     "atk2": "Boomburst",
     "bp2": 50,
     "spd": 68,
@@ -32,10 +36,11 @@ var exploud = {
     "imgb": "assets/images/exploudb.png",
 };
 var zangoose = {
-    "name": "zangoose",
+    "name": "Zangoose",
     "hp": 130,
+    "hpcurr": 130,
     "atk1": "Fury Cutter",
-    "bp1": 10,
+    "bp1": 25,
     "atk2": "Crush Claw",
     "bp2": 30,
     "spd": 90,
@@ -43,8 +48,8 @@ var zangoose = {
     "imgb": "assets/images/zangooseb.png",
 };
 var empty = "empty";
-var playerinitial;
 var player;
+var atkcount = 0;
 var ecurr;
 var playerselected = false;
 var plist = [donphan, exploud, zangoose, tauros];
@@ -67,38 +72,126 @@ $(".choice").on("click", function(){
     if (!playerselected) {
         alert("You chose " + this.id +"!");
         //initialize player and remove from enemy list
-        playerinitial = plist[index];
         player = plist[index];
         playerselected = true;
         elist[index] = empty;
         //html and css changes
-        $("#select").html("Choose your enemy!");
-        this.style.visibility = "hidden";
+        $("#select").html("Choose your opponent!");
+        this.style.display = "none";
         $("#player").attr("src", name.imgb);
+        $("#pname").html(this.id);
     }
 
     //enemy select commands
     else {
         alert("A wild " + this.id + " appeared!");
         //initialize enemy and remove from list
+        this.style.display = "none";
         ecurr = elist[index];
         elist[index] = empty;
+        $("#ehp").css("width", "300px")
         //html and css changes
         $("#select").html("Battle!");
         $("#choicelist").css("display", "none");
         $("#enemy").attr("src", name.imgf);
+        $("#ename").html(this.id);
+        $("#fight").css("display", "");
     }
-
 });
 
+//functions for adjusting health bars
+var eadjust = function() {
+    var epercent = ecurr.hpcurr / ecurr.hp * 300;
+    $("#ehp").css("width", epercent + "px");
+}
+var padjust = function() {
+    var ppercent = player.hpcurr / player.hp * 300;
+    $("#php").css("width", ppercent + "px");
+}
 
+//combat commands
+$("#fight").on("click", function(){
+    atkcount += player.bp1;
 
+    //if player first
+    if (player.spd > ecurr.spd) {
+        alert(player.name + " used " + player.atk1 + "!");
+        ecurr.hpcurr -= atkcount;
+        //enemy survives, moves second
+        if (ecurr.hpcurr > 0) {
+            eadjust();
+            player.hpcurr -= ecurr.bp2;
+            alert(ecurr.name + " used " + ecurr.atk2 + "!");
+            //player survives
+            if (player.hpcurr > 0){
+                padjust();
+                if (player.name === "Tauros") {
+                    alert("Tauros's Rage is building!");
+                };
+            }
+            //player faints
+            else {
+                $("#php").css("width", "0px");
+                alert(player.name + " fainted!");
+                alert("Game Over");
+                $("#fight").css("display", "none");
+                $("#select").html("Game Over");
+            }
+        }
+        //enemy faints
+        else {
+            $("#ehp").css("width", "0px");
+            alert(ecurr.name + " fainted!");
+            $("#fight").css("display", "none");
+            //check for victory
+            if (elist.every(function(x){return x == "empty"}) === true){
+                alert("Congratulations! You Win!")
+                $("#select").html("Victory!")
+            }
+            else{
+            $("#select").html("Choose a new opponent!");
+            $("#choicelist").css("display", "");
+            }
+        }
+    }
 
-// sets enemy array
-// for (i=0;i<plist.length;i++){
-//     if (player !== plist[i]){
-//         elist[i] = plist[i]
-//     }
-// }
-
-
+    //enemy first move
+    else {
+        player.hpcurr -= ecurr.bp2;
+        alert(ecurr.name + " used " + ecurr.atk2 + "!");
+        //player survives, moves second
+        if (player.hpcurr > 0){
+            padjust();
+            ecurr.hpcurr -= atkcount;
+            alert(player.name + " used " + player.atk1 + "!");
+            //enemy survives
+            if (ecurr.hpcurr > 0){
+                eadjust();
+            }
+            //enemy faints
+            else {
+                $("#ehp").css("width", "0px");
+                alert(ecurr.name + " fainted!")
+                $("#fight").css("display", "none");
+                //check for victory
+                if (elist.every(function(x){return x == "empty"}) === true){
+                    alert("Congratulations! You Win!")
+                    $("#select").html("Victory!")
+                }
+                else{
+                $("#select").html("Choose a new opponent!");
+                $("#choicelist").css("display", "")
+                }
+            }
+        }
+        //player faints
+        else {
+            $("#php").css("width", "0px");
+            alert(player.name + " fainted!");
+            alert("Game Over");
+            $("#fight").css("display", "none");
+            $("#select").html("Game Over");
+        }
+    }
+});
+});

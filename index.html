@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<div class="container header">
+<div class="container" id="header">
     <h1>Pok&eacute;mon Clicker Gauntlet RPG</h1>
     <h2 id="select"></h2>
 </div>
@@ -22,7 +22,8 @@
         <div class="choice" pkindex="2" id="Zangoose"></div>
         <div class="choice" pkindex="3" id="Tauros"></div>
     </div>
-    <div id="battlebox">
+</div>
+<div class="container" id = battlebox>
         <div class="row battlespacer"></div>
     <div class="row">
         <div class="col-2"></div><div class="col-9">
@@ -31,7 +32,7 @@
                         <div class="row namespacer"></div>
                         <div class="row etext" id="ename">Opponent</div>
                         <div class="row">
-                            <span class="etext">HP: |</span><span id="einfo"></span>
+                            <span class="etext">HP: |</span><span id="ehp"></span>
                         </div>
                 </div>
                 <img class="imgbattle" id="enemy">
@@ -47,13 +48,11 @@
             <div class="row namespacer"></div>
             <div class="row ptext" id="pname">Player</div>
             <div class="row">
-                <span class="ptext">HP: |</span><span id="pinfo"></span>
+                <span class="ptext">HP: |</span><span id="php"></span>
             </div>
         </div>
     </div>
     <button id="fight">Fight</button>
-    </div>
-
 </div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

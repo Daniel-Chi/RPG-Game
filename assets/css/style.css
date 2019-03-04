@@ -1,6 +1,6 @@
-.header {
-    margin-left: 10%;
+#header {
     width: 800px;
+    margin: auto;
     text-align: center;
 }
 .imgselect, .imgbattle {
@@ -19,7 +19,7 @@
 .imgselect:hover, .imgselect:focus {
     border-color: crimson;
 }
-#einfo, #pinfo {
+#ehp, #php {
     width: 300px;
     height: 16px;
     position: relative;
@@ -36,8 +36,14 @@
     bottom: 70px;
 }
 #battlebox {
+    width: 800px;
+    padding: 0px;
     background-image: url(../images/background.jpg);
     background-repeat: no-repeat;
+}
+#choicelist {
+    width: 900px;
+    margin: auto;
 }
 body {
     background-image: url(../images/allbg.jpg);
