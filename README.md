@@ -7,6 +7,7 @@ The player character is displayed in the bottom left of the battle area, Enemy i
 Health bars do not display numerical values, but instead shrink proportionally to the remaining percentage of health.
 There are 4 character choices, which all have different attacks and health.
 They also have different speeds, determining which character takes damage first.
+Characters are declared as global objects and tied to HTML elements with an attribute called "pkindex".
 The player character always uses an attack that increases in power over time, but they must fight three enemies one after another.
 The game is balanced so that the player may win or lose with any character depending on strategy.
 The page must be refreshed to play again.
