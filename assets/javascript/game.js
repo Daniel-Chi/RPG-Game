@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+// initialize each pokemon as a global object with stats, moves, and images
 var tauros = {
     "name": "Tauros",
     "hp": 210,
@@ -47,13 +49,19 @@ var zangoose = {
     "imgf": "assets/images/zangoose.png",
     "imgb": "assets/images/zangooseb.png",
 };
+
+//initialize placeholder variables in global scope
 var empty = "empty";
 var player;
 var atkcount = 0;
 var ecurr;
 var playerselected = false;
+
+//initialize arrays for player and enemy choice lists
 var plist = [donphan, exploud, zangoose, tauros];
 var elist = plist;
+
+//use jQuery to initialize select screen
 $("#select").html("<h2>Choose your Pok&eacute;mon!<h2>");
 $("#Donphan").html("<img class='imgselect' src='" + donphan.imgf + "'>");
 $("#Exploud").html("<img class='imgselect' src='" + exploud.imgf + "'>");
@@ -61,6 +69,7 @@ $("#Zangoose").html("<img class='imgselect' src='" + zangoose.imgf + "'>");
 $("#Tauros").html("<img class='imgselect' src='" + tauros.imgf + "'>");
 $("#fight").css("display", "none");
 
+//event listener for choosing player or enemy
 $(".choice").on("click", function(){
 
     //gets index# of choice
