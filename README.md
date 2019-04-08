@@ -1,7 +1,7 @@
 # RPG-Game
 https://daniel-chi.github.io/RPG-Game/
 This is a basic game demonstrating use of HTML, CSS, and Javascript.
-The grid is set up using the Bootstrap CDN.
+The grid is set up using the Bootstrap CDN. DOM manipulation is done with jQuery.
 Game logic is done in Javascript and results in changes to the page.
 The player character is displayed in the bottom left of the battle area, Enemy in the top right.
 Health bars do not display numerical values, but instead shrink proportionally to the remaining percentage of health.
